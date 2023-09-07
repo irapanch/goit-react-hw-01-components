@@ -1,20 +1,32 @@
 import React from 'react';
-// avatar, name, isOnline
+import PropTypes from 'prop-types';
+
 export const Friends = ({ arrFriends }) => {
   return (
     <ul className="friend-list">
       {arrFriends.map(friends => (
-        <li class="item">
-          <span class="status">{friends.isOnline}</span>
+        <li key={friends.id} className="item">
+          <span className="status">{friends.isOnline}</span>
           <img
-            class="avatar"
+            className="avatar"
             src={friends.avatar}
             alt="User avatar"
             width="48"
           />
-          <p class="name">{friends.name}</p>
+          <p className="name">{friends.name}</p>
         </li>
       ))}
     </ul>
   );
+};
+
+Friends.propTypes = {
+  arrFriends: PropTypes.arrayOf(
+    PropTypes.shape({
+      avatar: PropTypes.string,
+      name: PropTypes.string.isRequired,
+      isOnline: PropTypes.bool,
+      id: PropTypes.number,
+    })
+  ).isRequired,
 };

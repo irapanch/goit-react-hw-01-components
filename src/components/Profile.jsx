@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const UserCard = ({ username, tag, location, avatar, stats }) => {
   return (
@@ -26,4 +27,12 @@ export const UserCard = ({ username, tag, location, avatar, stats }) => {
       </ul>
     </div>
   );
+};
+
+UserCard.propTypes = {
+  username: PropTypes.string.isRequired,
+  tag: PropTypes.string,
+  location: PropTypes.string,
+  avatar: PropTypes.string,
+  stats: PropTypes.objectOf(PropTypes.number),
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const DataStat = ({ title, stats }) => {
   return (
@@ -6,7 +7,7 @@ export const DataStat = ({ title, stats }) => {
       <h2 className="title">{title}</h2>
       <ul className="stat-list">
         {stats.map(data => (
-          <li className="item">
+          <li key={data.id} className="item">
             <span className="label">{data.label}</span>
             <span className="percentage">{data.percentage}</span>
           </li>
@@ -14,4 +15,15 @@ export const DataStat = ({ title, stats }) => {
       </ul>
     </section>
   );
+};
+
+DataStat.propTypes = {
+  title: PropTypes.string,
+  stats: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      label: PropTypes.string.isRequired,
+      percentage: PropTypes.number.isRequired,
+    })
+  ).isRequired,
 };
