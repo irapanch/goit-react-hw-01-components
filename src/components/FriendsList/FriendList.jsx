@@ -1,22 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {
+  StyledWrapper,
+  StyledStatItem,
+  StyledStatus,
+  StyledAvatar,
+} from './FriendsList.Styled';
 
 export const Friends = ({ arrFriends }) => {
   return (
-    <ul className="friend-list">
+    <StyledWrapper>
       {arrFriends.map(friends => (
-        <li key={friends.id} className="item">
-          <span className="status">{friends.isOnline}</span>
-          <img
-            className="avatar"
-            src={friends.avatar}
-            alt="User avatar"
-            width="48"
-          />
+        <StyledStatItem key={friends.id}>
+          <StyledStatus $isOnline={friends.isOnline}>
+            {friends.isOnline}
+          </StyledStatus>
+          <StyledAvatar src={friends.avatar} alt="User avatar" width="48" />
           <p className="name">{friends.name}</p>
-        </li>
+        </StyledStatItem>
       ))}
-    </ul>
+    </StyledWrapper>
   );
 };
 
